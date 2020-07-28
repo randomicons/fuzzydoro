@@ -1,0 +1,24 @@
+//noinspection CssInvalidAtRule
+@import-normalize ;
+@import url('https://fonts.googleapis.com/css2?family=Overpass:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import "css/config.scss";
+body {
+  background: hsl(168, 100%, 99%);
+  //background: $green;
+  margin: 0;
+  font-family: "Overpass", sans-serif;
+  color: $purple;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+button {
+  border: none;
+  font-family: "Overpass", sans-serif;
+  padding: $size-3;
+  box-shadow: $height-1;
+  color: $gray-7;
+  font-size: $size-3;
+  background-color: $red;
+  border-radius: 3px;
+}
