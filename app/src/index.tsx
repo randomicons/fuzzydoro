@@ -5,7 +5,7 @@ import App from "./pages/App"
 import * as serviceWorker from "./serviceWorker"
 import axios from "axios"
 
-axios.defaults.baseURL = "/api/"
+axios.defaults.baseURL = "/"
 
 
 ReactDOM.render(
