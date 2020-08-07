@@ -8,4 +8,5 @@ const getTokenFromHeader = (req: Request) => {
 export const checkAuth = jwt({
   secret: process.env.JWT_SECRET!, // The _secret_ to sign the JWTs
   getToken: getTokenFromHeader, // How to extract the JWT from the request
+  algorithms: ['HS256']
 })

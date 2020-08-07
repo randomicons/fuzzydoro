@@ -7,11 +7,10 @@ import {UserModel} from "../models/User.model";
 
 const saltRounds = 10
 
-const genToken = (userInfo: User) => {
+const genToken = (email: string) => {
   const options = {expiresIn: 60 * 60 * 24 * 3}
-  const {password, ...payload} = userInfo
   return {
-    token: jwt.sign(payload, process.env.JWT_SECRET!, options),
+    token: jwt.sign({email}, process.env.JWT_SECRET!, options),
     maxAge: options.expiresIn,
   }
 }
@@ -29,7 +28,7 @@ export const login = async (email: string, password: string) => {
   if (!match) {
     throw new AppError("Password incorrect", HttpCode.UNAUTHORIZED)
   }
-  return genToken(userInfo)
+  return genToken(userInfo.email)
 }
 
 export const signup = async (email: string, password: string) => {
@@ -37,7 +36,7 @@ export const signup = async (email: string, password: string) => {
     const existingUser = await UserModel.findOne({email})
     if (!existingUser) {
       await UserModel.create({email, password: await bcrypt.hash(password, saltRounds)})
-      return genToken({email, password})
+      return genToken(email)
     }
   } catch (e) {
     throw new AppError("DB error", HttpCode.BAD_REQUEST, e.stack)

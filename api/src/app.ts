@@ -7,6 +7,8 @@ import logger from "morgan"
 import cookieParser from "cookie-parser"
 import mongoose from 'mongoose'
 import userRoutes from "./routes/user.route";
+import {taskRoutes} from "./routes/task.route";
+import {checkAuth} from "./middleware/checkAuth";
 
 const mongoDB = process.env.MONGODB_URI
 mongoose.connect(mongoDB!, {
@@ -25,6 +27,7 @@ app.use(cookieParser())
 
 app.use('/testAPI', testAPIRouter)
 app.use('/user', userRoutes)
+app.use('/task', checkAuth, taskRoutes)
 
 // error handler
 app.use(function (err: any, req: Request<null>, res: Response, next: any) {
