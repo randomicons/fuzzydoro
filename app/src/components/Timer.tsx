@@ -12,6 +12,7 @@ interface timerState {
 
 export default class Timer extends React.Component<any, timerState> {
 
+  audio = new Audio('/alarm.mp3')
   minute = 60000
   second = 1000
   timerID = 0
@@ -31,6 +32,7 @@ export default class Timer extends React.Component<any, timerState> {
       if (this.state.timeRemaining === 0 || this.state.timeRemaining < 0) {
         clearInterval(this.timerID)
         this.setState((state, props) => ({running: false}))
+        this.audio.play()
       } else {
         this.setState(
           (state, props) => ({
