@@ -1,16 +1,15 @@
 import React from "react"
+import {RouteComponentProps} from "@reach/router"
 
 
-interface timerProps {
-    value: string
-}
+type Props = RouteComponentProps
 
 interface timerState {
     timeRemaining: number
     running: boolean
 }
 
-export default class Timer extends React.Component<any, timerState> {
+export default class Timer extends React.Component<Props, timerState> {
 
   audio = new Audio('/alarm.mp3')
   minute = 60000
@@ -19,7 +18,7 @@ export default class Timer extends React.Component<any, timerState> {
   originalTime = 0.1 * this.minute
   snoozeTime = 0.05 * this.minute
 
-  constructor(props : any) {
+  constructor(props : Props) {
     super(props)
     this.state = {
       timeRemaining: this.originalTime,
