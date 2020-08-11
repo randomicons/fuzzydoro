@@ -3,6 +3,7 @@ import {navigate, Router} from "@reach/router"
 import styles from "./App.module.scss"
 import Home from "./Home";
 
+import Login from "../components/Login"
 import SignUp from "../components/SignUp"
 import Timer from "../components/Timer"
 
@@ -17,6 +18,7 @@ export default function App() {
         <Router>
           <Home path={"/"}/>
           <SignUp path={"/signup"}/>
+          <Login path={"/login"}/>
           <Timer path={"/timer"}/>
         </Router>
       </div>

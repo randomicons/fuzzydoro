@@ -1,18 +1,7 @@
 import axios from "axios"
 import React, {useState} from "react"
-import {Redirect, RouteComponentProps} from "@reach/router"
+import {RouteComponentProps} from "@reach/router"
 
-
-let onSubmit = (form: any) => {
-  debugger;
-  axios.post('/login', form).then(res => {
-    if (res.status === 200) {
-      return <Redirect to='/login' />
-    } else {
-      return null
-    }
-  })
-}
 
 type Props = RouteComponentProps
 
@@ -21,9 +10,22 @@ export default function Login(props: Props) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
+  const onSubmit = (e: any) => {
+    let formData = {
+      email: email,
+      password: password
+    }
+    axios.post("/user/login", formData).then(res => {
+      props.navigate!("/timer")
+    }).catch((err) =>
+      alert(err.message)
+    )
+    e.preventDefault()
+  }
+
   return (
     <form onSubmit={onSubmit}>
-      <h1>Sign Up Below!</h1>
+      <h1>Login Below!</h1>
       <label>
           Email <br/>
         <input

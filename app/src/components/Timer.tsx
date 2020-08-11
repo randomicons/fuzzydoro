@@ -1,5 +1,5 @@
 import React from "react"
-import {RouteComponentProps} from "@reach/router"
+import {Redirect, RouteComponentProps} from "@reach/router"
 
 
 type Props = RouteComponentProps
@@ -24,6 +24,9 @@ export default class Timer extends React.Component<Props, timerState> {
       timeRemaining: this.originalTime,
       running: false
     }
+  }
+
+  componentDidMount() {
   }
 
   tick() {
@@ -92,6 +95,10 @@ export default class Timer extends React.Component<Props, timerState> {
   }
 
   render() {
+    if (document.cookie.indexOf('token=') === -1) {
+        return <Redirect to="/login" noThrow />
+    }
+
     let minutes = Math.floor(this.state.timeRemaining / this.minute)
     let seconds = Math.floor(this.state.timeRemaining % this.minute / this.second)
     let seconds_string = seconds < 10 ? '0' + seconds : '' + seconds
