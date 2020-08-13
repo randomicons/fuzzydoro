@@ -2,10 +2,10 @@ import React from "react"
 import {navigate, Router} from "@reach/router"
 import styles from "./App.module.scss"
 import Home from "./Home";
+import TimerPage from "./TimerPage"
 
 import Login from "../components/Login"
 import SignUp from "../components/SignUp"
-import Timer from "../components/Timer"
 
 export default function App() {
 
@@ -19,7 +19,7 @@ export default function App() {
           <Home path={"/"}/>
           <SignUp path={"/signup"}/>
           <Login path={"/login"}/>
-          <Timer path={"/timer"}/>
+          <TimerPage path={"/timer"}/>
         </Router>
       </div>
     </>

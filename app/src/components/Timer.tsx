@@ -1,32 +1,38 @@
 import React from "react"
-import {Redirect, RouteComponentProps} from "@reach/router"
 
 
-type Props = RouteComponentProps
-
-interface timerState {
-    timeRemaining: number
-    running: boolean
+interface timerProps {
+  originalTime: number
+  snoozeTime: number
+  taskName: string
 }
 
-export default class Timer extends React.Component<Props, timerState> {
+interface timerState {
+  originalTime: number
+  timeRemaining: number
+  snoozeTime: number
+  running: boolean
+  taskName: string
+}
+
+export default class Timer extends React.Component<timerProps, timerState> {
 
   audio = new Audio('/alarm.mp3')
   minute = 60000
   second = 1000
   timerID = 0
-  originalTime = 0.1 * this.minute
-  snoozeTime = 0.05 * this.minute
+  // originalTime = 0.1 * this.minute
+  // snoozeTime = 0.05 * this.minute
 
-  constructor(props : Props) {
+  constructor(props: timerProps) {
     super(props)
     this.state = {
-      timeRemaining: this.originalTime,
-      running: false
+      originalTime: props.originalTime * this.minute,
+      timeRemaining: props.originalTime * this.minute,
+      snoozeTime: props.snoozeTime * this.minute,
+      running: false,
+      taskName: props.taskName
     }
-  }
-
-  componentDidMount() {
   }
 
   tick() {
@@ -82,7 +88,7 @@ export default class Timer extends React.Component<Props, timerState> {
   }
 
   snooze() {
-    this.setState((state, props) => ({timeRemaining: this.snoozeTime}))
+    this.setState((state, props) => ({timeRemaining: this.state.snoozeTime}))
     this.tick()
   }
 
@@ -90,15 +96,11 @@ export default class Timer extends React.Component<Props, timerState> {
     clearInterval(this.timerID)
     this.setState((state, props) => ({
       running: false,
-      timeRemaining: this.originalTime
+      timeRemaining: this.state.originalTime
     }))
   }
 
   render() {
-    if (document.cookie.indexOf('token=') === -1) {
-        return <Redirect to="/login" noThrow />
-    }
-
     let minutes = Math.floor(this.state.timeRemaining / this.minute)
     let seconds = Math.floor(this.state.timeRemaining % this.minute / this.second)
     let seconds_string = seconds < 10 ? '0' + seconds : '' + seconds
