@@ -1,3 +1,4 @@
+import axios from "axios"
 import React from "react"
 
 
@@ -35,11 +36,28 @@ export default class Timer extends React.Component<timerProps, timerState> {
     }
   }
 
-  tick() {
+  saveTimer = (snooze: boolean) => {
+    let timerData = {
+      name: this.state.taskName,
+      startTime: new Date(),
+      duration: 0
+    }
+    if (snooze) {
+      timerData["duration"] = this.props.snoozeTime
+    } else {
+      timerData["duration"] = this.props.originalTime
+    }
+    axios.post("/task", timerData).catch((err) =>
+      alert(err.message)
+    )
+  }
+
+  tick(snooze: boolean) {
     this.timerID = window.setInterval(() => {
       if (this.state.timeRemaining === 0 || this.state.timeRemaining < 0) {
         clearInterval(this.timerID)
         this.setState((state, props) => ({running: false}))
+        this.saveTimer(snooze)
         this.audio.play()
       } else {
         this.setState(
@@ -69,7 +87,7 @@ export default class Timer extends React.Component<timerProps, timerState> {
         )
       } else {
         return (
-          <button onClick={() => this.tick()}>Start</button>
+          <button onClick={() => this.tick(false)}>Start</button>
         )
       }
     } else {
@@ -89,7 +107,7 @@ export default class Timer extends React.Component<timerProps, timerState> {
 
   snooze() {
     this.setState((state, props) => ({timeRemaining: this.state.snoozeTime}))
-    this.tick()
+    this.tick(true)
   }
 
   reset() {

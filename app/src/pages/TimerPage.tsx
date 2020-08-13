@@ -1,5 +1,5 @@
 import React, {useState} from "react"
-import {RouteComponentProps} from "@reach/router"
+import {Redirect, RouteComponentProps} from "@reach/router"
 
 import MakeTimer from '../components/MakeTimer'
 import Timer from '../components/Timer'
@@ -28,7 +28,9 @@ export default function TimerPage(props: Props) {
     e.preventDefault()
   }
 
-  if (!submitted) {
+  if (document.cookie.indexOf('token=') === -1) {
+    return <Redirect to="/login" noThrow />
+  } else if (!submitted) {
     return <MakeTimer onSubmit={onSubmit} />
   } else {
     return (
