@@ -7,18 +7,9 @@ interface makeTimerProps {
 
 export default function MakeTimer(props: makeTimerProps) {
 
-  const [timerLength, setTimerLength] = useState(0)
-  const [snoozeLength, setSnoozeLength] = useState(0)
+  const [timerLength, setTimerLength] = useState(25)
+  const [snoozeLength, setSnoozeLength] = useState(9)
   const [taskName, setTaskName] = useState('')
-
-  // const onSubmit = (e: any) => {
-  //   return (
-  //       <Timer
-  //         originalTime={timerLength}
-  //         snoozeTime={snoozeLength}
-  //         taskName={taskName} />
-  //   )
-  // }
 
   return (
     <form onSubmit={props.onSubmit}>
@@ -29,7 +20,7 @@ export default function MakeTimer(props: makeTimerProps) {
           type="number"
           name="timerLength"
           placeholder="0"
-          min="0"
+          min="1"
           max="60"
           value={timerLength}
           onChange={(e) => setTimerLength(parseInt(e.target.value))}
@@ -44,7 +35,7 @@ export default function MakeTimer(props: makeTimerProps) {
           type="number"
           name="snoozeLength"
           placeholder="0"
-          min="0"
+          min="1"
           max="60"
           value={snoozeLength}
           onChange={(e) => setSnoozeLength(parseInt(e.target.value))}
