@@ -1,5 +1,6 @@
 import axios from "axios"
 import React from "react"
+import {RouteComponentProps} from "@reach/router"
 
 
 interface timerProps {
@@ -22,8 +23,6 @@ export default class Timer extends React.Component<timerProps, timerState> {
   minute = 60000
   second = 1000
   timerID = 0
-  // originalTime = 0.1 * this.minute
-  // snoozeTime = 0.05 * this.minute
 
   constructor(props: timerProps) {
     super(props)
