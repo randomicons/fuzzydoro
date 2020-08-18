@@ -3,7 +3,7 @@ import React from "react"
 import {RouteComponentProps} from "@reach/router"
 
 
-interface timerProps {
+interface TimerProps {
   originalTime: number
   snoozeTime: number
   taskName: String
