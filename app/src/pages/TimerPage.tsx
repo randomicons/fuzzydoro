@@ -7,12 +7,6 @@ import Timer from '../components/Timer'
 
 type Props = RouteComponentProps
 
-// interface timerPageState {
-//   timerLength: number
-//   snoozeLength: number
-//   taskName: string
-// }
-
 export default function TimerPage(props: Props) {
 
   const [timerLength, setTimerLength] = useState(0)

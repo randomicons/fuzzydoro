@@ -5,15 +5,15 @@ import React from "react"
 interface timerProps {
   originalTime: number
   snoozeTime: number
-  taskName: string
+  taskName: String
 }
 
 interface timerState {
   originalTime: number
   timeRemaining: number
   snoozeTime: number
-  running: boolean
-  taskName: string
+  running: Boolean
+  taskName: String
 }
 
 export default class Timer extends React.Component<timerProps, timerState> {
