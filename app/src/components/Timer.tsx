@@ -9,7 +9,7 @@ interface TimerProps {
   taskName: String
 }
 
-interface timerState {
+interface TimerState {
   originalTime: number
   timeRemaining: number
   snoozeTime: number
