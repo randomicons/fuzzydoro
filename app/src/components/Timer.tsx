@@ -2,13 +2,13 @@ import axios from "axios"
 import React from "react"
 
 
-interface timerProps {
+interface TimerProps {
   originalTime: number
   snoozeTime: number
   taskName: String
 }
 
-interface timerState {
+interface TimerState {
   originalTime: number
   timeRemaining: number
   snoozeTime: number
