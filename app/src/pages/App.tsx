@@ -4,6 +4,7 @@ import styles from "./App.module.scss"
 import Home from "./Home";
 import TimerPage from "./TimerPage"
 
+
 import Login from "../components/Login"
 import SignUp from "../components/SignUp"
 

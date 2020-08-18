@@ -9,6 +9,7 @@ export default function SignUp(props: Props) {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+
   const [retypedPassword, setRetypedPassword] = useState('')
 
   const onSubmit = (e: any) => {
