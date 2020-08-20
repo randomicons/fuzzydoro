@@ -8,7 +8,7 @@ import {UserModel} from "../models/User.model";
 const saltRounds = 10
 
 const genToken = (email: string) => {
-  const options = {expiresIn: 60 * 60 * 24 * 3}
+  const options = {expiresIn: 1000 * 60 * 60 * 24}
   return {
     token: jwt.sign({email}, process.env.JWT_SECRET!, options),
     maxAge: options.expiresIn,

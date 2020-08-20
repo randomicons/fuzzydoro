@@ -10,18 +10,23 @@ export default function SignUp(props: Props) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const onSubmit = () => {
+  const [retypedPassword, setRetypedPassword] = useState('')
+
+  const onSubmit = (e: any) => {
+    if (password !== retypedPassword) {
+      alert("Your passwords do not match.")
+      return
+    }
     let formData = {
       email: email,
       password: password
     }
-    console.log(JSON.stringify(formData))
-    debugger;
-    axios.post("/signup", formData).then(res => {
-      props.navigate("/login")
+    axios.post("/user/signup", formData).then(res => {
+      props.navigate!("/timer")
     }).catch((err) =>
       alert(err.message)
     )
+    e.preventDefault()
   }
 
   return (
@@ -48,6 +53,19 @@ export default function SignUp(props: Props) {
           placeholder="Enter password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+      </label>
+      <br />
+      <br />
+      <label>
+          Retype Password <br/>
+        <input
+          type="password"
+          name="password"
+          placeholder="Enter password"
+          value={retypedPassword}
+          onChange={(e) => setRetypedPassword(e.target.value)}
           required
         />
       </label>

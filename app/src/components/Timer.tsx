@@ -1,36 +1,61 @@
+import axios from "axios"
 import React from "react"
-import {RouteComponentProps} from "@reach/router"
 
 
-type Props = RouteComponentProps
-
-interface timerState {
-    timeRemaining: number
-    running: boolean
+interface TimerProps {
+  originalTime: number
+  snoozeTime: number
+  taskName: String
 }
 
-export default class Timer extends React.Component<Props, timerState> {
+interface TimerState {
+  originalTime: number
+  timeRemaining: number
+  snoozeTime: number
+  running: Boolean
+  taskName: String
+}
+
+export default class Timer extends React.Component<TimerProps, TimerState> {
 
   audio = new Audio('/alarm.mp3')
   minute = 60000
   second = 1000
   timerID = 0
-  originalTime = 0.1 * this.minute
-  snoozeTime = 0.05 * this.minute
 
-  constructor(props : Props) {
+  constructor(props: TimerProps) {
     super(props)
     this.state = {
-      timeRemaining: this.originalTime,
-      running: false
+      originalTime: props.originalTime * this.minute,
+      timeRemaining: props.originalTime * this.minute,
+      snoozeTime: props.snoozeTime * this.minute,
+      running: false,
+      taskName: props.taskName
     }
   }
 
-  tick() {
+  saveTimer = (snooze: boolean) => {
+    let timerData = {
+      name: this.state.taskName,
+      startTime: new Date(),
+      duration: 0
+    }
+    if (snooze) {
+      timerData["duration"] = this.props.snoozeTime
+    } else {
+      timerData["duration"] = this.props.originalTime
+    }
+    axios.post("/task", timerData).catch((err) =>
+      alert(err.message)
+    )
+  }
+
+  tick(snooze: boolean) {
     this.timerID = window.setInterval(() => {
       if (this.state.timeRemaining === 0 || this.state.timeRemaining < 0) {
         clearInterval(this.timerID)
         this.setState((state, props) => ({running: false}))
+        this.saveTimer(snooze)
         this.audio.play()
       } else {
         this.setState(
@@ -60,7 +85,7 @@ export default class Timer extends React.Component<Props, timerState> {
         )
       } else {
         return (
-          <button onClick={() => this.tick()}>Start</button>
+          <button onClick={() => this.tick(false)}>Start</button>
         )
       }
     } else {
@@ -79,15 +104,15 @@ export default class Timer extends React.Component<Props, timerState> {
   }
 
   snooze() {
-    this.setState((state, props) => ({timeRemaining: this.snoozeTime}))
-    this.tick()
+    this.setState((state, props) => ({timeRemaining: this.state.snoozeTime}))
+    this.tick(true)
   }
 
   reset() {
     clearInterval(this.timerID)
     this.setState((state, props) => ({
       running: false,
-      timeRemaining: this.originalTime
+      timeRemaining: this.state.originalTime
     }))
   }
 
