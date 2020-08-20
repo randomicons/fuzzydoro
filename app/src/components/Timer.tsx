@@ -16,14 +16,14 @@ interface TimerState {
   taskName: String
 }
 
-export default class Timer extends React.Component<timerProps, timerState> {
+export default class Timer extends React.Component<TimerProps, TimerState> {
 
   audio = new Audio('/alarm.mp3')
   minute = 60000
   second = 1000
   timerID = 0
 
-  constructor(props: timerProps) {
+  constructor(props: TimerProps) {
     super(props)
     this.state = {
       originalTime: props.originalTime * this.minute,
