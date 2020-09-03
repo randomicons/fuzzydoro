@@ -4,3 +4,17 @@ export function shuffleArray<T>(array: T[]) {
     ;[array[i], array[j]] = [array[j], array[i]]
   }
 }
+
+
+export function isLoggedIn() {
+  console.log('isLoggedIn')
+  if (document.cookie.indexOf('token=') === -1) {
+    console.log('' + false)
+    debugger;
+    return false
+  } else {
+    console.log('' + true)
+    debugger;
+    return true
+  }
+}
