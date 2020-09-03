@@ -1,5 +1,8 @@
 import axios from "axios"
 import React from "react"
+import Button from "react-bootstrap/Button"
+import Container from "react-bootstrap/Container"
+import Row from 'react-bootstrap/Row'
 
 
 interface TimerProps {
@@ -81,11 +84,11 @@ export default class Timer extends React.Component<TimerProps, TimerState> {
     if (this.state.timeRemaining > 0) {
       if (this.state.running) {
         return (
-          <button onClick={() => this.stop()}>Stop</button>
+          <Button onClick={() => this.stop()}>Stop</Button>
         )
       } else {
         return (
-          <button onClick={() => this.tick(false)}>Start</button>
+          <Button onClick={() => this.tick(false)}>Start</Button>
         )
       }
     } else {
@@ -96,7 +99,7 @@ export default class Timer extends React.Component<TimerProps, TimerState> {
   renderSnoozeButton = () => {
     if (this.state.timeRemaining <= 0) {
       return (
-        <button onClick={() => this.snooze()}>Snooze</button>
+        <Button onClick={() => this.snooze()}>Snooze</Button>
       )
     } else {
       return null
@@ -122,12 +125,17 @@ export default class Timer extends React.Component<TimerProps, TimerState> {
     let seconds_string = seconds < 10 ? '0' + seconds : '' + seconds
 
     return (
-      <>
-        <p>{minutes}:{seconds_string}</p>
-        {this.renderStartStopButton()}
-        {this.renderSnoozeButton()}
-        <button onClick={() => this.reset()}>Reset</button>
-      </>
+      <Container fluid>
+        <Row className="justify-content-center">
+          <h1 className="text-center">{minutes}:{seconds_string}</h1>
+        </Row>
+        <Row className="justify-content-center">
+          {this.renderStartStopButton()}
+          {this.renderSnoozeButton()}
+           &nbsp;
+          <Button onClick={() => this.reset()}>Reset</Button>
+        </Row>
+      </Container>
     )
   }
 }

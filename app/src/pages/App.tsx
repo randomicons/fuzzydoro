@@ -1,20 +1,23 @@
 import React from "react"
-import {navigate, Router} from "@reach/router"
+import {Router} from "@reach/router"
 import styles from "./App.module.scss"
 import Home from "./Home";
 import TimerPage from "./TimerPage"
 
 
 import Login from "../components/Login"
+import NavbarManager from "../components/NavbarManager"
 import SignUp from "../components/SignUp"
+
+import "bootstrap/dist/css/bootstrap.min.css";
+
 
 export default function App() {
 
+
   return (
     <>
-      <header>
-        <h1 onClick={() => navigate("/")}>Fuzzydoro</h1>
-      </header>
+      <NavbarManager />
       <div className={styles.main}>
         <Router>
           <Home path={"/"}/>
