@@ -133,7 +133,7 @@ export default class Timer extends React.Component<TimerProps, TimerState> {
           {this.renderStartStopButton()}
           {this.renderSnoozeButton()}
            &nbsp;
-          <Button onClick={() => this.reset()}>Reset</Button>
+          <Button variant="danger" onClick={() => this.reset()}>Reset</Button>
         </Row>
       </Container>
     )
