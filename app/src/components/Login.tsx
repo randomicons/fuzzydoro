@@ -1,5 +1,9 @@
 import axios from "axios"
 import React, {useState} from "react"
+import Button from "react-bootstrap/Button"
+import Container from "react-bootstrap/Container"
+import Form from "react-bootstrap/Form"
+import Row from 'react-bootstrap/Row'
 
 import {RouteComponentProps} from "@reach/router"
 
@@ -24,35 +28,37 @@ export default function Login(props: Props) {
   }
 
   return (
-    <form onSubmit={onSubmit}>
-      <h1>Login Below!</h1>
-      <label>
-          Email <br/>
-        <input
-          type="email"
-          name="email"
-          placeholder="Enter email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-      </label>
-      <br />
-      <br />
-      <label>
-          Password <br/>
-        <input
-          type="password"
-          name="password"
-          placeholder="Enter password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </label>
-      <br />
-      <br />
-      <input type="submit" value="Submit" />
-    </form>
+    <Container fluid>
+      <Row className="justify-content-center">
+        <Form onSubmit={onSubmit}>
+          <h1>Login Below!</h1>
+          <Form.Group>
+            <Form.Label>Email</Form.Label>
+            <Form.Control
+              type="email"
+              name="email"
+              placeholder="Enter email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              type="password"
+              name="password"
+              placeholder="Enter password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </Form.Group>
+          <Button variant="primary" type="submit">
+            Submit
+          </Button>
+        </Form>
+      </Row>
+    </Container>
   )
 }

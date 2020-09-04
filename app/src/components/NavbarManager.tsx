@@ -11,6 +11,8 @@ export default function NavbarManager(props: any) {
   const publicNavbar = (
     <Nav className="ml-auto">
       <Button href="/signup" variant="outline-primary">Sign Up</Button>
+      &nbsp;
+      &nbsp;
       <Button href="/login" variant="outline-success">Login</Button>
     </Nav>
   )
