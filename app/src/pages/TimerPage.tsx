@@ -4,6 +4,8 @@ import {Redirect, RouteComponentProps} from "@reach/router"
 import MakeTimer from '../components/MakeTimer'
 import Timer from '../components/Timer'
 
+import {isLoggedIn} from '../util/util-funtions'
+
 
 type Props = RouteComponentProps
 
@@ -22,7 +24,7 @@ export default function TimerPage(props: Props) {
     e.preventDefault()
   }
 
-  if (document.cookie.indexOf('token=') === -1) {
+  if (!isLoggedIn()) {
     return <Redirect to="/login" noThrow />
   } else if (!submitted) {
     return <MakeTimer onSubmit={onSubmit} />
