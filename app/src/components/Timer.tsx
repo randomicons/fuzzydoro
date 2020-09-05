@@ -99,15 +99,23 @@ export default class Timer extends React.Component<TimerProps, TimerState> {
   renderSnoozeButton = () => {
     if (this.state.timeRemaining <= 0) {
       return (
-        <Button onClick={() => this.snooze()}>Snooze</Button>
+        <div style={{margin: "5px"}}>
+          <p>Snooze</p>
+          <Button onClick={() => this.snooze(this.state.snoozeTime)}>
+            {this.state.snoozeTime / 60 / 1000} mins
+          </Button>
+          <Button onClick={() => this.snooze(5 * 60 * 1000)}>5 mins</Button>
+          <Button onClick={() => this.snooze(10 * 60 * 1000)}>10 mins</Button>
+          <Button onClick={() => this.snooze(15 * 60 * 1000)}>15 mins</Button>
+        </div>
       )
     } else {
       return null
     }
   }
 
-  snooze() {
-    this.setState((state, props) => ({timeRemaining: this.state.snoozeTime}))
+  snooze(time: number) {
+    this.setState((state, props) => ({timeRemaining: time}))
     this.tick(true)
   }
 
@@ -130,10 +138,11 @@ export default class Timer extends React.Component<TimerProps, TimerState> {
           <h1 className="text-center">{minutes}:{seconds_string}</h1>
         </Row>
         <Row className="justify-content-center">
+          <Button variant="danger" onClick={() => this.reset()}>Reset</Button>
+        </Row>
+        <Row className="justify-content-center">
           {this.renderStartStopButton()}
           {this.renderSnoozeButton()}
-           &nbsp;
-          <Button variant="danger" onClick={() => this.reset()}>Reset</Button>
         </Row>
       </Container>
     )
