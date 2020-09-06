@@ -104,8 +104,11 @@ export default class Timer extends React.Component<TimerProps, TimerState> {
           <Button onClick={() => this.snooze(this.state.snoozeTime)}>
             {this.state.snoozeTime / 60 / 1000} mins
           </Button>
+          &nbsp;
           <Button onClick={() => this.snooze(5 * 60 * 1000)}>5 mins</Button>
+          &nbsp;
           <Button onClick={() => this.snooze(10 * 60 * 1000)}>10 mins</Button>
+          &nbsp;
           <Button onClick={() => this.snooze(15 * 60 * 1000)}>15 mins</Button>
         </div>
       )
@@ -139,9 +142,10 @@ export default class Timer extends React.Component<TimerProps, TimerState> {
         </Row>
         <Row className="justify-content-center">
           <Button variant="danger" onClick={() => this.reset()}>Reset</Button>
+          &nbsp;
+          {this.renderStartStopButton()}
         </Row>
         <Row className="justify-content-center">
-          {this.renderStartStopButton()}
           {this.renderSnoozeButton()}
         </Row>
       </Container>
