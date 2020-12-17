@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "ts-node app.ts",
-    "start": "nodemon ./dist/app.js",
+    "start": "npm run build:live",
     "build": "tsc",
     "build:live": "nodemon --watch 'src/**/*.ts' --exec NODE_ENV='dev' ts-node src/app.ts"
   },
