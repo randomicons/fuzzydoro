@@ -39,6 +39,6 @@ app.use(function (err: any, req: Request<null>, res: Response, next: any) {
   res.status(err.status || 500)
 })
 
-app.listen(9000, () => console.log('Started on port 9000'))
+app.listen(process.env.PORT || 9000, () => console.log('Started on port 9000'))
 
 export {app}
