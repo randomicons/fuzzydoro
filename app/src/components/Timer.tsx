@@ -140,7 +140,7 @@ export default class Timer extends React.Component<TimerProps, TimerState> {
     return (
       <Container className={styles['container-margin']} fluid>
         <Row className="justify-content-center">
-          <h1 className="text-center">{minutes}:{seconds_string}</h1>
+          <h1 className={`text-center ${styles['timer']}`}>{minutes}:{seconds_string}</h1>
         </Row>
         <Row className="justify-content-center">
           <Button variant="danger" onClick={() => this.reset()}>Reset</Button>
