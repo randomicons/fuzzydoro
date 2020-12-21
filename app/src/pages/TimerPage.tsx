@@ -6,7 +6,6 @@ import Timer from '../components/Timer'
 
 import {isLoggedIn} from '../util/util-funtions'
 
-
 type Props = RouteComponentProps
 
 export default function TimerPage(props: Props) {

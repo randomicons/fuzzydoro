@@ -4,6 +4,8 @@ import Button from "react-bootstrap/Button"
 import Container from "react-bootstrap/Container"
 import Row from 'react-bootstrap/Row'
 
+import styles from "./Components.module.scss"
+
 
 interface TimerProps {
   originalTime: number
@@ -136,7 +138,7 @@ export default class Timer extends React.Component<TimerProps, TimerState> {
     let seconds_string = seconds < 10 ? '0' + seconds : '' + seconds
 
     return (
-      <Container fluid>
+      <Container className={styles['container-margin']} fluid>
         <Row className="justify-content-center">
           <h1 className="text-center">{minutes}:{seconds_string}</h1>
         </Row>

@@ -4,6 +4,7 @@ import Container from "react-bootstrap/Container"
 import Form from "react-bootstrap/Form"
 import Row from 'react-bootstrap/Row'
 
+import styles from "./Components.module.scss"
 
 interface makeTimerProps {
     onSubmit: any
@@ -16,7 +17,7 @@ export default function MakeTimer(props: makeTimerProps) {
   const [taskName, setTaskName] = useState('')
 
   return (
-    <Container fluid>
+    <Container className={styles['container-margin']} fluid>
       <Row className="justify-content-center">
         <Form onSubmit={props.onSubmit}>
           <h1>Customize your timer!</h1>
