@@ -7,6 +7,8 @@ import Row from 'react-bootstrap/Row'
 
 import {RouteComponentProps} from "@reach/router"
 
+import styles from "./Components.module.scss"
+
 type Props = RouteComponentProps
 
 export default function Login(props: Props) {
@@ -28,7 +30,7 @@ export default function Login(props: Props) {
   }
 
   return (
-    <Container fluid>
+    <Container className={styles['container-margin']} fluid>
       <Row className="justify-content-center">
         <Form onSubmit={onSubmit}>
           <h1>Login Below!</h1>

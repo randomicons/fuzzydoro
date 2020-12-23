@@ -4,6 +4,8 @@ import Button from "react-bootstrap/Button"
 import Container from "react-bootstrap/Container"
 import Row from 'react-bootstrap/Row'
 
+import styles from "./Components.module.scss"
+
 
 interface TimerProps {
   originalTime: number
@@ -104,8 +106,11 @@ export default class Timer extends React.Component<TimerProps, TimerState> {
           <Button onClick={() => this.snooze(this.state.snoozeTime)}>
             {this.state.snoozeTime / 60 / 1000} mins
           </Button>
+          &nbsp;
           <Button onClick={() => this.snooze(5 * 60 * 1000)}>5 mins</Button>
+          &nbsp;
           <Button onClick={() => this.snooze(10 * 60 * 1000)}>10 mins</Button>
+          &nbsp;
           <Button onClick={() => this.snooze(15 * 60 * 1000)}>15 mins</Button>
         </div>
       )
@@ -133,15 +138,16 @@ export default class Timer extends React.Component<TimerProps, TimerState> {
     let seconds_string = seconds < 10 ? '0' + seconds : '' + seconds
 
     return (
-      <Container fluid>
+      <Container className={styles['container-margin']} fluid>
         <Row className="justify-content-center">
-          <h1 className="text-center">{minutes}:{seconds_string}</h1>
+          <h1 className={`text-center ${styles['timer']}`}>{minutes}:{seconds_string}</h1>
         </Row>
         <Row className="justify-content-center">
           <Button variant="danger" onClick={() => this.reset()}>Reset</Button>
+          &nbsp;
+          {this.renderStartStopButton()}
         </Row>
         <Row className="justify-content-center">
-          {this.renderStartStopButton()}
           {this.renderSnoozeButton()}
         </Row>
       </Container>

@@ -6,6 +6,8 @@ import Container from "react-bootstrap/Container"
 import Form from "react-bootstrap/Form"
 import Row from 'react-bootstrap/Row'
 
+import styles from "./Components.module.scss"
+
 
 type Props = RouteComponentProps
 
@@ -34,7 +36,7 @@ export default function SignUp(props: Props) {
   }
 
   return (
-    <Container fluid>
+    <Container className={styles['container-margin']} fluid>
       <Row className="justify-content-center">
         <Form onSubmit={onSubmit}>
           <h1>Sign Up Below!</h1>
