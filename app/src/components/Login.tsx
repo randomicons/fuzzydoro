@@ -30,7 +30,7 @@ export default function Login(props: Props) {
   }
 
   return (
-    <Container className={styles['container-margin']} fluid>
+    <Container className={styles.containerMargin} fluid>
       <Row className="justify-content-center">
         <Form onSubmit={onSubmit}>
           <h1>Login Below!</h1>
