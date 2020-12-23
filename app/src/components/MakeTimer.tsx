@@ -17,7 +17,7 @@ export default function MakeTimer(props: makeTimerProps) {
   const [taskName, setTaskName] = useState('')
 
   return (
-    <Container className={styles['container-margin']} fluid>
+    <Container className={styles.containerMargin} fluid>
       <Row className="justify-content-center">
         <Form onSubmit={props.onSubmit}>
           <h1>Customize your timer!</h1>

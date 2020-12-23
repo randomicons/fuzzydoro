@@ -138,9 +138,9 @@ export default class Timer extends React.Component<TimerProps, TimerState> {
     let seconds_string = seconds < 10 ? '0' + seconds : '' + seconds
 
     return (
-      <Container className={styles['container-margin']} fluid>
+      <Container className={styles.containerMargin} fluid>
         <Row className="justify-content-center">
-          <h1 className={`text-center ${styles['timer']}`}>{minutes}:{seconds_string}</h1>
+          <h1 className={`text-center ${styles.timer}`}>{minutes}:{seconds_string}</h1>
         </Row>
         <Row className="justify-content-center">
           <Button variant="danger" onClick={() => this.reset()}>Reset</Button>
